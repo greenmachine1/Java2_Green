@@ -1,6 +1,7 @@
 package com.Cory.week_3;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.ContentProvider;
@@ -93,19 +94,58 @@ public class CollectionProvider extends ContentProvider{
     	JSONArray results = null;
     	JSONArray weather = null;
 		
-		
+		try{
+			/* getting the file and converting it to a json object */
+			job = new JSONObject(JSONString);
+			
+			/* getting the city object which will be drilled down to the "name" object */
+			city = job.getJSONObject("city");
+			
+			/* used to hold the city name */
+			String cityName = city.getString("name");
+			
+			/* creating the results array  */
+			results = job.getJSONArray("list");
+			
+			if(results == null){
+				/* returns an empty cursor */
+				return result;
+			}
+			
+			
+			
+			
+			
+		}catch(JSONException e){
+			e.printStackTrace();
+		}
 		
 		
 		switch (uriMatcher.match(uri)){
 		case ITEMS:
-//			return WeatherData.CONTENT_TYPE;
+
+			/* running through my results array */
+			for (int i = 0; i < results.length(); i++){
+				try{
+					String speed = results.getJSONObject(i).getString("speed");
+					String pressure = results.getJSONObject(i).getString("pressure");
+				
+					/* Used to get the weather array from within the list array */ 
+					weather = results.getJSONObject(i).getJSONArray("weather");
+					String weatherString = weather.getJSONObject(0).getString("description");
+					
+					result.addRow(new Object[]{i + 1, pressure, weatherString, speed});
+				}catch(JSONException e){
+					e.printStackTrace();
+				}
+			}
 			
 		case ITEMS_ID:
 //			return WeatherData.CONTENT_ITEM_TYPE;
 		}
 
 		// TODO Auto-generated method stub
-		return null;
+		return result;
 	}
 
 	@Override

@@ -64,6 +64,7 @@ public class MainActivity extends Activity {
         listView.addHeaderView(listHeader);
         
         userInputBox = (EditText)findViewById(R.id.userInput);
+        userInputBox.setText(CollectionProvider.WeatherData.CONTENT_URI.toString());
        
         Button goButton = (Button)findViewById(R.id.goButton);
         goButton.setOnClickListener(new OnClickListener(){
