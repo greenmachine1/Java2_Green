@@ -121,9 +121,8 @@ public class MainActivity extends Activity {
     	
     	/* loading my file into a string */
     	String JSONString = m_file.readStringFile(this, fileName);
-    	//Log.i("response", JSONString);
     	
-    	//ArrayList<HashMap<String, String>>mylist = new ArrayList<HashMap<String,String>>();
+    	ArrayList<HashMap<String, String>>mylist = new ArrayList<HashMap<String,String>>();
     	
     	JSONObject job = null;
     	JSONObject city = null;
@@ -146,6 +145,7 @@ public class MainActivity extends Activity {
 				/* creating the results array  */
 				results = job.getJSONArray("list");
 				
+				/* goes through my list array */ 
 				for(int i = 0; i < results.length(); i++){
 					String speed = results.getJSONObject(i).getString("speed");
 					String pressure = results.getJSONObject(i).getString("pressure");
@@ -154,31 +154,20 @@ public class MainActivity extends Activity {
 					weather = results.getJSONObject(i).getJSONArray("weather");
 					String weatherString = weather.getJSONObject(0).getString("description");
 					
-					Log.i("yes", speed + ", " + pressure + ", " + weatherString);
-						
+					HashMap<String, String> displayMap = new HashMap<String, String>();
+					
+					displayMap.put("pressure", pressure);
+					displayMap.put("weather", weatherString);
+					displayMap.put("speed", speed);
+					
+					mylist.add(displayMap);
 				}
 				
+				SimpleAdapter adapter = new SimpleAdapter(this, mylist, R.layout.list_row, 
+						new String[]{"pressure", "weather", "speed"}, 
+						new int[]{R.id.pressure, R.id.weather, R.id.speed});
 				
-				
-	    		//HashMap<String, String> displayMap = new HashMap<String, String>();
-	    		
-	    		
-	    		/*
-	    		displayMap.put("name", nameString);
-	    		displayMap.put("weather", weatherString);
-	    		displayMap.put("speed", windSpeed);
-	    		*/
-	    		
-	    		//mylist.add(displayMap);
-	    		
-	    		/* this is complicated but it basically assigns the rows for each element */
-				
-	    		//SimpleAdapter adapter = new SimpleAdapter(this, mylist, R.layout.list_row, 
-	    			//	new String[] {"pressure", "weather", "speed"}, 
-	    			//	new int[] {R.id.pressure, R.id.weather, R.id.speed});
-	    		
-	    		
-	    		//listView.setAdapter(adapter);
+				listView.setAdapter(adapter);
 				
 			} catch (JSONException e) {
 				e.printStackTrace();

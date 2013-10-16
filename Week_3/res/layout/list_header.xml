@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
     <TextView
-        android:id="@+id/pressure"
+        android:id="@+id/pressure_header"
         android:text="Pressure"
         android:layout_weight="1"
         android:paddingLeft="5dp"
