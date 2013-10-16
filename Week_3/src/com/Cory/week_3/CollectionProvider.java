@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import android.util.Log;
 
 public class CollectionProvider extends ContentProvider{
 	
@@ -132,9 +133,44 @@ public class CollectionProvider extends ContentProvider{
 					e.printStackTrace();
 				}
 			}
+			break;
 			
 		case ITEMS_ID:
-//			return WeatherData.CONTENT_ITEM_TYPE;
+
+			String itemId = uri.getLastPathSegment();
+			Log.i("QueryId", itemId);
+			
+			int index;
+			
+			try{
+				index = Integer.parseInt(itemId);
+			}catch(NumberFormatException e){
+				Log.e("query", "index format error");
+				break;
+			}
+			
+			if(index <= 0 || index > results.length()){
+				Log.e("query", "index out of range for " + uri.toString());
+			}
+			
+			try {
+				String speed = results.getJSONObject(index - 1).getString("speed");
+				String pressure = results.getJSONObject(index - 1).getString("pressure");
+
+				/* Used to get the weather array from within the list array */ 
+				weather = results.getJSONObject(index - 1).getJSONArray("weather");
+				String weatherString = weather.getJSONObject(0).getString("description");
+				
+				result.addRow(new Object[]{index, pressure, weatherString, speed});
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			break;
+			
+			default:
+				Log.e("query", "invalid uri = " + uri.toString());
 		}
 
 		// TODO Auto-generated method stub

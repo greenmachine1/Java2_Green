@@ -17,6 +17,7 @@ import android.os.Messenger;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -129,6 +130,7 @@ public class MainActivity extends Activity {
     	/* loading my file into a string */
     	String JSONString = m_file.readStringFile(this, fileName);
     	
+    	/*
     	ArrayList<HashMap<String, String>>mylist = new ArrayList<HashMap<String,String>>();
     	
     	JSONObject job = null;
@@ -136,28 +138,35 @@ public class MainActivity extends Activity {
     	JSONArray results = null;
     	JSONArray weather = null;
     	
+    	*/
     		/* getting the array from the field "results" */
+    	/*
     		try {
-    			/* getting the file and converting it to a json object */
-				job = new JSONObject(JSONString);
+    			/* getting the file and converting it to a json object */ 
+				//job = new JSONObject(JSONString);
 				
 				/* getting the city object which will be drilled down to the "name" object */
+				/*
 				city = job.getJSONObject("city");
 				
 				String cityName = city.getString("name");
-
+				*/
 				/* Setting my city text field */
+				/*
 				cityText.setText(cityName);
-				
+				*/
 				/* creating the results array  */
+				/*
 				results = job.getJSONArray("list");
-				
+				*/
 				/* goes through my list array */ 
+				/*
 				for(int i = 0; i < results.length(); i++){
 					String speed = results.getJSONObject(i).getString("speed");
 					String pressure = results.getJSONObject(i).getString("pressure");
-					
+					*/
 					/* Used to get the weather array from within the list array */ 
+				/*
 					weather = results.getJSONObject(i).getJSONArray("weather");
 					String weatherString = weather.getJSONObject(0).getString("description");
 					
@@ -178,7 +187,7 @@ public class MainActivity extends Activity {
 				
 			} catch (JSONException e) {
 				e.printStackTrace();
-			}
+			} */
     }
 
 
