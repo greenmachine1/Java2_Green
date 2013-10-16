@@ -58,8 +58,8 @@ public class JSONWeatherService extends IntentService{
 	public String returnJsonData(String userInput){ 
 		
 		/* creation of the overall url */
-		//String completeURL = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + userInput + "&mode=json&cnt=3";
-		String completeURL = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Chico&mode=json&cnt=3";
+		String completeURL = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + userInput + "&mode=json&cnt=3";
+
 	
 		URL finalURL = null;
 		try {
