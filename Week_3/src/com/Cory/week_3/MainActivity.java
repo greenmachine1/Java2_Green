@@ -31,7 +31,8 @@ public class MainActivity extends Activity {
 
 	// global variables
 	Context _context;
-	EditText userInputBox;
+	EditText queryInput;
+	EditText searchInput;
 	TextView text;
 	TextView cityText;
     ListView listView;
@@ -63,8 +64,12 @@ public class MainActivity extends Activity {
         View listHeader = this.getLayoutInflater().inflate(R.layout.list_header, null);
         listView.addHeaderView(listHeader);
         
-        userInputBox = (EditText)findViewById(R.id.userInput);
-        userInputBox.setText(CollectionProvider.WeatherData.CONTENT_URI.toString());
+        searchInput = (EditText)findViewById(R.id.searchInput);
+        searchInput.setHint("Enter a City to look up its current weather");
+        
+        
+        queryInput = (EditText)findViewById(R.id.query);
+        queryInput.setText(CollectionProvider.WeatherData.CONTENT_URI.toString());
        
         Button goButton = (Button)findViewById(R.id.goButton);
         goButton.setOnClickListener(new OnClickListener(){
@@ -74,7 +79,7 @@ public class MainActivity extends Activity {
 				
 				/* converts the user input into a string.  This will need to check
 				* for whitespace and also if the user has not inputted anything */
-				String userInputString = userInputBox.getText().toString();
+				String userInputString = searchInput.getText().toString();
 				
 				final Handler JsonHandler = new Handler(){
 
