@@ -90,20 +90,13 @@ public class CollectionProvider extends ContentProvider{
 		
 		/* setting up my JSON objects and arrays */
 		JSONObject job = null;
-    	JSONObject city = null;
     	JSONArray results = null;
     	JSONArray weather = null;
 		
 		try{
 			/* getting the file and converting it to a json object */
 			job = new JSONObject(JSONString);
-			
-			/* getting the city object which will be drilled down to the "name" object */
-			city = job.getJSONObject("city");
-			
-			/* used to hold the city name */
-			String cityName = city.getString("name");
-			
+
 			/* creating the results array  */
 			results = job.getJSONArray("list");
 			

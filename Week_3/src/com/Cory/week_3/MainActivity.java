@@ -64,10 +64,11 @@ public class MainActivity extends Activity {
         View listHeader = this.getLayoutInflater().inflate(R.layout.list_header, null);
         listView.addHeaderView(listHeader);
         
+        /* the main search field */
         searchInput = (EditText)findViewById(R.id.searchInput);
         searchInput.setHint("Enter a City to look up its current weather");
         
-        
+        /* query input field */
         queryInput = (EditText)findViewById(R.id.query);
         queryInput.setText(CollectionProvider.WeatherData.CONTENT_URI.toString());
        
