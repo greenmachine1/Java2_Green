@@ -174,8 +174,8 @@ public class MainActivity extends Activity {
 	    		/* this is complicated but it basically assigns the rows for each element */
 				
 	    		//SimpleAdapter adapter = new SimpleAdapter(this, mylist, R.layout.list_row, 
-	    			//	new String[] {"name", "weather", "speed"}, 
-	    			//	new int[] {R.id.name, R.id.weather, R.id.speed});
+	    			//	new String[] {"pressure", "weather", "speed"}, 
+	    			//	new int[] {R.id.pressure, R.id.weather, R.id.speed});
 	    		
 	    		
 	    		//listView.setAdapter(adapter);
