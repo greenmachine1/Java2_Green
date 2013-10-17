@@ -147,10 +147,14 @@ public class MainActivity extends Activity {
 						String country = city.getString("country");
 						String population = city.getString("population");
 						
-						Log.i("info", cityName +" "+ country + " " + population);
+						//Log.i("info", cityName +" "+ country + " " + population);
 						
 						/* startup of my activity */
 						Intent intent = new Intent(_context, MoreInfo.class);
+						intent.putExtra("name", cityName);
+						intent.putExtra("country", country);
+						intent.putExtra("population", population);
+						setResult(RESULT_OK, intent);
 						startActivity(intent);
 						
 					}catch (JSONException e){
