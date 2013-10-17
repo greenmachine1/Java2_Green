@@ -70,9 +70,10 @@ public class MainActivity extends Activity {
         searchInput.setHint("Enter a City to look up its current weather");
         
         /* query input field */
-        queryInput = (EditText)findViewById(R.id.query);
-        queryInput.setText(CollectionProvider.WeatherData.CONTENT_URI.toString());
-       
+        //queryInput = (EditText)findViewById(R.id.query);
+        //queryInput.setText(CollectionProvider.WeatherData.CONTENT_URI.toString());
+        
+        
         Button goButton = (Button)findViewById(R.id.goButton);
         goButton.setOnClickListener(new OnClickListener(){
 
@@ -121,14 +122,18 @@ public class MainActivity extends Activity {
 		    	startService(myServiceIntent);
 			}
         });
-         
     }
+
+    
+    
+    
     
     /* this will parse out the saved file and present it back to the user */
     public void displayData(){
     	
     	/* loading my file into a string */
     	String JSONString = m_file.readStringFile(this, fileName);
+    	Log.i("result", JSONString);
     	
    
     	ArrayList<HashMap<String, String>>mylist = new ArrayList<HashMap<String,String>>();
@@ -187,7 +192,6 @@ public class MainActivity extends Activity {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			} 
-			
     }
 
 

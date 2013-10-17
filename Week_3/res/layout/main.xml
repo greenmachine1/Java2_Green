@@ -3,40 +3,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
     <TextView
         android:id="@+id/cityText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"/>
+        android:ems="10" />
+
     <EditText
         android:id="@+id/searchInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" >
     </EditText>
-   	<EditText
-        android:id="@+id/query"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10" >
-    </EditText>
+
     <Button
         android:id="@+id/goButton"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Query" />
+
     <TextView
         android:id="@+id/resultText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"/>
+        android:ems="10" />
+
     <ListView
-         android:id="@+id/list"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:divider="#ffffff"
-         android:drawSelectorOnTop="false"/>
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="191dp"
+        android:divider="#ffffff"
+        android:drawSelectorOnTop="false" />
+
+    <Button
+        android:id="@+id/moreInfo"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="More Info" />
 
 </LinearLayout>
