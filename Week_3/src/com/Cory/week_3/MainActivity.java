@@ -138,12 +138,11 @@ public class MainActivity extends Activity {
     	JSONArray results = null;
     	JSONArray weather = null;
     	
-    	
     		/* getting the array from the field "results" */
     	
     		try {
     			/* getting the file and converting it to a json object */ 
-				job = new JSONObject(JSONString);
+				job = new JSONObject(JSONString); 
 				
 				/* getting the city object which will be drilled down to the "name" object */
 				
@@ -188,6 +187,7 @@ public class MainActivity extends Activity {
 			} catch (JSONException e) {
 				e.printStackTrace();
 			} 
+			
     }
 
 
