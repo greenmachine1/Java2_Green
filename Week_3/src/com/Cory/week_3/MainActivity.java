@@ -174,6 +174,8 @@ public class MainActivity extends Activity {
 		});
     }
     
+    
+    /* Upon completion of the second activity, do this */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
     	if(resultCode == RESULT_OK && requestCode == REQUEST_CODE){

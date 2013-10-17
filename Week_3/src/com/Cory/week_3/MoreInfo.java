@@ -2,15 +2,22 @@ package com.Cory.week_3;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.view.View.OnClickListener;
 
 public class MoreInfo extends Activity{
 
 	TextView cityTextView;
 	TextView countryTextView;
 	TextView populationTextView;
+	
+	
+	String url = "http://www.yahoo.com";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -41,6 +48,19 @@ public class MoreInfo extends Activity{
 	    	populationTextView.setText("Population: " + populationStringResult);
 	    	
 	    	Log.i("result on activity", cityStringResult + " " + countryStringResult + " " + populationStringResult);
+	    
+	    	Button searchOnlineButton = (Button)findViewById(R.id.onlineSearch);
+	    	searchOnlineButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					
+					// creates an implicit intent that calls on yahoo.com
+					Intent i = new Intent(Intent.ACTION_VIEW);
+			    	i.setData(Uri.parse(url));
+			    	startActivity(i);
+				}
+			});
 	    }
 
 	}
