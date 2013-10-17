@@ -134,6 +134,28 @@ public class MainActivity extends Activity {
 					String JSONString = m_file.readStringFile(_context, fileName);
 					Log.i("result", JSONString);
 					
+					/* going to be gathering the name, country, and population */
+					JSONObject mainInfo = null;
+					JSONObject city = null;
+					
+					try{
+						mainInfo = new JSONObject(JSONString);
+						
+						city = mainInfo.getJSONObject("city");
+						
+						String cityName = city.getString("name");
+						String country = city.getString("country");
+						String population = city.getString("population");
+						
+						Log.i("info", cityName +" "+ country + " " + population);
+						
+						/* startup of my activity */
+						Intent intent = new Intent(_context, MoreInfo.class);
+						startActivity(intent);
+						
+					}catch (JSONException e){
+						e.printStackTrace();
+					}
 
 				}else{
 					Log.i("nothings in this file", "Nope");
