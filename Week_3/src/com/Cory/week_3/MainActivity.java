@@ -73,7 +73,6 @@ public class MainActivity extends Activity {
         //queryInput = (EditText)findViewById(R.id.query);
         //queryInput.setText(CollectionProvider.WeatherData.CONTENT_URI.toString());
         
-        
         Button goButton = (Button)findViewById(R.id.goButton);
         goButton.setOnClickListener(new OnClickListener(){
 
@@ -122,6 +121,17 @@ public class MainActivity extends Activity {
 		    	startService(myServiceIntent);
 			}
         });
+        
+        
+        Button moreInfoButton = (Button)findViewById(R.id.moreInfo);
+        moreInfoButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Log.i("Yep", "nope");
+			}
+		});
     }
 
     
