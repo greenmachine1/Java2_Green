@@ -69,10 +69,11 @@ public class MoreInfo extends Activity{
 		// activity is about to be destroyed
 	}
 	
+	/* my return intent */
 	@Override
 	public void finish(){
 		Intent data = new Intent();
-		data.putExtra("returnKey", "Finished");
+		data.putExtra("returnKey", "Back to main screen");
 		
 		setResult(RESULT_OK, data);
 		super.finish();

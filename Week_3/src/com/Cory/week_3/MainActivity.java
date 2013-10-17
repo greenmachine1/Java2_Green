@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -177,7 +178,8 @@ public class MainActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
     	if(resultCode == RESULT_OK && requestCode == REQUEST_CODE){
     		if(data.hasExtra("returnKey")){
-    			
+    			String result = data.getExtras().getString("returnKey");
+    			Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
     		}
     	}
     }
