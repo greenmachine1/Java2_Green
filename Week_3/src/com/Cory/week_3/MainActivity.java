@@ -122,14 +122,25 @@ public class MainActivity extends Activity {
 			}
         });
         
-        
+        /* button will gather different info within the json and pass it on 
+         * to a new activity */ 
         Button moreInfoButton = (Button)findViewById(R.id.moreInfo);
         moreInfoButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.i("Yep", "nope");
+				if(m_file != null){
+					String JSONString = m_file.readStringFile(_context, fileName);
+					Log.i("result", JSONString);
+					
+
+				}else{
+					Log.i("nothings in this file", "Nope");
+				}
+				
+				
+				
 			}
 		});
     }
