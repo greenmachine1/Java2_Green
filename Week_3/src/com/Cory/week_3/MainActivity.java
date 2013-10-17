@@ -41,6 +41,8 @@ public class MainActivity extends Activity {
 	FileManager m_file;
 	String fileName = "json_info.txt";
 	
+	private static final int REQUEST_CODE = 10;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,7 +157,7 @@ public class MainActivity extends Activity {
 						intent.putExtra("country", country);
 						intent.putExtra("population", population);
 						setResult(RESULT_OK, intent);
-						startActivity(intent);
+						startActivityForResult(intent, REQUEST_CODE) ;
 						
 					}catch (JSONException e){
 						e.printStackTrace();
@@ -169,6 +171,15 @@ public class MainActivity extends Activity {
 				
 			}
 		});
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    	if(resultCode == RESULT_OK && requestCode == REQUEST_CODE){
+    		if(data.hasExtra("returnKey")){
+    			
+    		}
+    	}
     }
 
     

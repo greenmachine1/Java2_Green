@@ -45,25 +45,39 @@ public class MoreInfo extends Activity{
 
 	}
 
-	
+	@Override
 	protected void onResume(){
 		super.onResume();
 		// activity has become visible
 	}
 	
+	@Override
 	protected void onPause(){
 		super.onPause();
 		// another activity is taking focus
 	}
 	
+	@Override
 	protected void onStop(){
 		super.onStop();
 		// activity is no longer visible
 	}
 	
+	@Override
 	protected void onDestroy(){
 		super.onDestroy();
 		// activity is about to be destroyed
 	}
+	
+	@Override
+	public void finish(){
+		Intent data = new Intent();
+		data.putExtra("returnKey", "Finished");
+		
+		setResult(RESULT_OK, data);
+		super.finish();
+	}
+	
+	
 	
 }
