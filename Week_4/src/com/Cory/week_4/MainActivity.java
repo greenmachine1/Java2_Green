@@ -122,15 +122,7 @@ public class MainActivity extends Activity {
 		    	startService(myServiceIntent);
 			}
         });
-        
-        
-        
-        
-        
-        /* query input field */
-        queryInput = (EditText)findViewById(R.id.queryInput);
-        queryInput.setText(CollectionProvider.WeatherData.CONTENT_URI.toString());
-        
+                
         
         /* button for my query info section */
         Button queryButton = (Button)findViewById(R.id.queryButton);
@@ -138,10 +130,7 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-			Log.i("Clicked", "Query");	
-			
-			
+						
 			/* calling on my query info class */
 			Intent intent = new Intent(_context, QueryInfo.class);
 			startActivity(intent);

@@ -19,5 +19,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Button" />
+    <ListView
+        android:id="@+id/listView2"
+        android:layout_width="match_parent"
+        android:layout_height="191dp"
+        android:divider="#ffffff"
+        android:drawSelectorOnTop="false" />
 
 </LinearLayout>
