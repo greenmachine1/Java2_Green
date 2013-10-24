@@ -8,21 +8,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 /* activity used to query info */
 public class QueryInfo extends Activity{
 	
 	EditText queryText;
 	ListView listView2;
+	TextView headerText;
 	String fileName = "json_info.txt";
-	FileManager m_file;
 
 
 	
@@ -34,11 +34,10 @@ public class QueryInfo extends Activity{
 		// setting the new xml file
 		setContentView(R.layout.query_info);
 		
-		
-		
-		
 		queryText = (EditText)findViewById(R.id.queryInput);
 		//queryText.setText(CollectionProvider.WeatherData.CONTENT_URI.toString());
+		
+		headerText = (TextView)findViewById(R.id.headerText);
 		
 		/* targetting my listView */
         listView2 = (ListView)this.findViewById(R.id.listView2);
@@ -75,7 +74,9 @@ public class QueryInfo extends Activity{
 				
 				city = job.getJSONObject("city");
 				
-				//String cityName = city.getString("name");
+				String cityName = city.getString("name");
+				
+				headerText.setText(cityName.toString());
 				
 				/* creating the results array  */
 				
