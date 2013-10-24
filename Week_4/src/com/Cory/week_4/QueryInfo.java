@@ -23,7 +23,7 @@ public class QueryInfo extends Activity{
 	ListView listView2;
 	String fileName = "json_info.txt";
 	FileManager m_file;
-	Context _context;
+
 
 	
 	
@@ -34,7 +34,7 @@ public class QueryInfo extends Activity{
 		// setting the new xml file
 		setContentView(R.layout.query_info);
 		
-		_context = this.getApplicationContext();
+		
 		
 		
 		queryText = (EditText)findViewById(R.id.queryInput);
@@ -53,7 +53,7 @@ public class QueryInfo extends Activity{
 	
 	public void displayData(){
 		/* loading my file into a string */
-    	String JSONString = m_file.readStringFile(_context, fileName);
+		String JSONString = FileManager.getInstance().readStringFile(getBaseContext(), fileName);
     	Log.i("result", JSONString);
     	
    
