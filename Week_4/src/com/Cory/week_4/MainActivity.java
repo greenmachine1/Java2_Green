@@ -73,9 +73,6 @@ public class MainActivity extends Activity {
         searchInput = (EditText)findViewById(R.id.searchInput);
         searchInput.setHint("Enter a City to look up its current weather");
         
-        /* query input field */
-        //queryInput = (EditText)findViewById(R.id.query);
-        //queryInput.setText(CollectionProvider.WeatherData.CONTENT_URI.toString());
         
         Button goButton = (Button)findViewById(R.id.goButton);
         goButton.setOnClickListener(new OnClickListener(){
@@ -126,6 +123,16 @@ public class MainActivity extends Activity {
 			}
         });
         
+        
+        
+        
+        
+        /* query input field */
+        queryInput = (EditText)findViewById(R.id.queryInput);
+        queryInput.setText(CollectionProvider.WeatherData.CONTENT_URI.toString());
+        
+        
+        /* button for my query info section */
         Button queryButton = (Button)findViewById(R.id.queryButton);
         queryButton.setOnClickListener(new OnClickListener() {
 			
@@ -133,8 +140,19 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 			Log.i("Clicked", "Query");	
+			
+			
+			/* calling on my query info class */
+			Intent intent = new Intent(_context, QueryInfo.class);
+			startActivity(intent);
+			
 			}
 		});
+        
+        
+        
+        
+        
         
         
         
