@@ -38,6 +38,7 @@ public class MainActivity extends Activity {
 	TextView text;
 	TextView cityText;
     ListView listView;
+    Cursor cursor;
 	
 	FileManager m_file;
 	String fileName = "json_info.txt";
@@ -125,6 +126,18 @@ public class MainActivity extends Activity {
 			}
         });
         
+        Button queryButton = (Button)findViewById(R.id.queryButton);
+        queryButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+			Log.i("Clicked", "Query");	
+			}
+		});
+        
+        
+        
         /* button will gather different info within the json and pass it on 
          * to a new activity */ 
         Button moreInfoButton = (Button)findViewById(R.id.moreInfo);
@@ -204,6 +217,7 @@ public class MainActivity extends Activity {
     	JSONObject city = null;
     	JSONArray results = null;
     	JSONArray weather = null;
+    	
     	
     		/* getting the array from the field "results" */
     	
