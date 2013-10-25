@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <service android:name="JSONWeatherService"></service>
-        <provider android:name="CollectionProvider" android:authorities="com.Cory.week_4.CollectionProvider" android:exported="true"></provider>
+        <provider android:name="CollectionProvider" android:authorities="com.Cory.week_4.collectionprovider" android:exported="true"></provider>
         <activity android:name="MoreInfo" android:label="moreInfo"></activity>
         <activity android:name="QueryInfo" android:label="queryInfo"></activity>
     </application>

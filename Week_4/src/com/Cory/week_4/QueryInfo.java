@@ -52,8 +52,9 @@ public class QueryInfo extends Activity{
         /* should be the start of my query stuff */ 
         _cursor = getContentResolver().query(CollectionProvider.WeatherData.CONTENT_URI,
         									CollectionProvider.WeatherData.PROJECTION,
-        									"weather",
-        									new String[]{"1", "weather", "speed"}, "");
+        									null,
+        									new String[]{""},
+        									null);
         
         int count = _cursor.getCount();
         

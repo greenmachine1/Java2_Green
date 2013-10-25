@@ -17,7 +17,7 @@ public class CollectionProvider extends ContentProvider{
 	
 	public static final String FILE_NAME = "json_info.txt";
 	
-	public static final String AUTHORITY = "com.Cory.week_4.CollectionProvider";
+	public static final String AUTHORITY = "com.Cory.week_4.collectionprovider";
 	
 	public static class WeatherData implements BaseColumns {
 		
