@@ -31,7 +31,8 @@ public class CollectionProvider extends ContentProvider{
 		public static final String WEATHER_COLUMN = "weather";
 		public static final String SPEED_COLUMN = "speed";
 		
-		public static final String[] PROJECTION= {"_Id", PRESSURE_COLUMN, WEATHER_COLUMN, SPEED_COLUMN};
+		public static final String[] PROJECTION = {"_Id", PRESSURE_COLUMN, WEATHER_COLUMN, SPEED_COLUMN};
+		
 		
 		/* constructor */ 
 		private WeatherData(){};

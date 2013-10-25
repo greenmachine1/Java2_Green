@@ -1,5 +1,7 @@
 package com.Cory.week_4;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,6 +11,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -50,7 +53,8 @@ public class QueryInfo extends Activity{
         displayData();
         
         /* should be the start of my query stuff */ 
-        _cursor = getContentResolver().query(CollectionProvider.WeatherData.CONTENT_URI,
+        
+        _cursor = getContentResolver().query(CollectionProvider.WeatherData.CONTENT_URI ,
         									CollectionProvider.WeatherData.PROJECTION,
         									null,
         									new String[]{""},
