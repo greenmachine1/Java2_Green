@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,7 @@ public class QueryInfo extends Activity{
 	ListView listView2;
 	TextView headerText;
 	String fileName = "json_info.txt";
+	Cursor _cursor;
 
 
 	
@@ -46,6 +48,18 @@ public class QueryInfo extends Activity{
         
         
         displayData();
+        
+        /* should be the start of my query stuff */ 
+        _cursor = getContentResolver().query(CollectionProvider.WeatherData.CONTENT_URI,
+        									CollectionProvider.WeatherData.PROJECTION,
+        									"weather",
+        									new String[]{"1", "weather", "speed"}, "");
+        
+        int count = _cursor.getCount();
+        
+        String countString = "count of " + count;
+        
+        Log.i("count", countString);
         
 		
 	}

@@ -17,14 +17,14 @@ public class CollectionProvider extends ContentProvider{
 	
 	public static final String FILE_NAME = "json_info.txt";
 	
-	public static final String AUTHORITY = "com.Cory.week_3.collectionprovider";
+	public static final String AUTHORITY = "com.Cory.week_4.CollectionProvider";
 	
 	public static class WeatherData implements BaseColumns {
 		
 		public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/items");
 		
-		public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.Cory.week_3.item";
-		public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.Cory.week_3.item";
+		public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.Cory.week_4.item";
+		public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.Cory.week_4.item";
 		
 		//Define Columns
 		public static final String PRESSURE_COLUMN = "pressure";
