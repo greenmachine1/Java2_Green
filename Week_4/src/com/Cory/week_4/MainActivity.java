@@ -126,9 +126,7 @@ public class MainActivity extends Activity {
 					        displayData();
 							
 						}
-						
-						
-						
+
 					}
 		    		
 		    	};
@@ -210,31 +208,18 @@ public class MainActivity extends Activity {
 			}
 		});
     }
-    
-    /* my saved state for when the user changes orientation */
-    /*
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState){
-    	String tempInputString = searchInput.getText().toString();
-    	
-    	savedInstanceState.putString("UserInput", tempInputString);
-    	
-    	if(mylist != null && !mylist.isEmpty()){
-    		
-    	}
-    	
-    	super.onSaveInstanceState(savedInstanceState);
-    }
-    */
-    
+
+/* my on save instance method */    
     @Override
     protected void onSaveInstanceState(Bundle outState){
     	super. onSaveInstanceState(outState);
+    	
     	
     	if(mylist != null && !mylist.isEmpty()){
     		outState.putSerializable("saved", (Serializable) mylist);
     		Log.i("MAIN", "Saving instance state data");
     	}
+    	
     }
     
     /* saved data gets restored and displayed */
@@ -244,7 +229,6 @@ public class MainActivity extends Activity {
     	
     	Log.i("MAIN", "Restoring instance state data");
     	
-    	//searchInput.setText(savedInstanceState.getString("UserInput"));
     }
     
    
@@ -271,13 +255,10 @@ public class MainActivity extends Activity {
     	/* loading my file into a string */
     	String JSONString = m_file.readStringFile(this, fileName);
     	Log.i("result", JSONString);
-    	
-   
-    	//ArrayList<HashMap<String, String>>mylist = new ArrayList<HashMap<String,String>>();
+
     	mylist = new ArrayList<HashMap<String,String>>();
 
-    	
- 
+
     	JSONObject job = null;
     	JSONObject city = null;
     	JSONArray results = null;
