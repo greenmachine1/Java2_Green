@@ -39,6 +39,8 @@ public class MainActivity extends Activity {
 	TextView cityText;
     ListView listView;
     Cursor cursor;
+    
+    ArrayList<HashMap<String, String>>mylist;
 	
 	FileManager m_file;
 	String fileName = "json_info.txt";
@@ -47,7 +49,7 @@ public class MainActivity extends Activity {
 	private static final int REQUEST_CODE = 10;
 	
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
@@ -108,7 +110,8 @@ public class MainActivity extends Activity {
 					        m_file = FileManager.getInstance();
 					        m_file.writeStringFile(_context, fileName, returnedObjectString);
 
-					        displayData();
+					        
+					        displayData(savedInstanceState);
 							
 						}
 						
@@ -196,7 +199,9 @@ public class MainActivity extends Activity {
     
     /* my saved state for when the user changes orientation */
     public void onSaveInstanceState(Bundle savedInstanceState){
-    	savedInstanceState.putString("UserInput", userInputString);
+    	String tempInputString = searchInput.getText().toString();
+    	
+    	savedInstanceState.putString("UserInput", tempInputString);
     	
     	super.onSaveInstanceState(savedInstanceState);
     }
@@ -226,14 +231,16 @@ public class MainActivity extends Activity {
     
     
     /* this will parse out the saved file and present it back to the user */
-    public void displayData(){
+    public void displayData(Bundle savedInstanceState){
     	
     	/* loading my file into a string */
     	String JSONString = m_file.readStringFile(this, fileName);
     	Log.i("result", JSONString);
     	
    
-    	ArrayList<HashMap<String, String>>mylist = new ArrayList<HashMap<String,String>>();
+    	//ArrayList<HashMap<String, String>>mylist = new ArrayList<HashMap<String,String>>();
+    	mylist = new ArrayList<HashMap<String,String>>();
+
     	
     	JSONObject job = null;
     	JSONObject city = null;
