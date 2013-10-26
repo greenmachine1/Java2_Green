@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
 	private static final int REQUEST_CODE = 10;
 	
     @Override
-    protected void onCreate(final Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
@@ -111,7 +111,7 @@ public class MainActivity extends Activity {
 					        m_file.writeStringFile(_context, fileName, returnedObjectString);
 
 					        
-					        displayData(savedInstanceState);
+					        displayData();
 							
 						}
 						
@@ -231,7 +231,7 @@ public class MainActivity extends Activity {
     
     
     /* this will parse out the saved file and present it back to the user */
-    public void displayData(Bundle savedInstanceState){
+    public void displayData(){
     	
     	/* loading my file into a string */
     	String JSONString = m_file.readStringFile(this, fileName);
