@@ -74,6 +74,10 @@ public class MainActivity extends Activity {
         searchInput.setHint("Enter a City to look up its current weather");
         
         
+        
+        
+        
+        
         Button goButton = (Button)findViewById(R.id.goButton);
         goButton.setOnClickListener(new OnClickListener(){
 
@@ -192,6 +196,13 @@ public class MainActivity extends Activity {
 				
 			}
 		});
+    }
+    
+    /* my saved state for when the user changes orientation */
+    public void onSaveInstanceState(Bundle savedInstanceState){
+    	savedInstanceState.putString("UserInput", "Hello");
+    	
+    	super.onSaveInstanceState(savedInstanceState);
     }
     
     
