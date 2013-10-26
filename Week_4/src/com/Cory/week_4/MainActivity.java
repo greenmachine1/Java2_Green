@@ -33,7 +33,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements FormFragment.FormListener{
 
 	// global variables
 	Context _context;
@@ -56,7 +56,8 @@ public class MainActivity extends Activity {
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        //setContentView(R.layout.main);
+        setContentView(R.layout.formfrag);
         
         /* making sure to provide the context */
         _context = this;
@@ -92,7 +93,7 @@ public class MainActivity extends Activity {
 	        }
         }
         
-        
+        /*
         Button goButton = (Button)findViewById(R.id.goButton);
         goButton.setOnClickListener(new OnClickListener(){
 
@@ -101,6 +102,7 @@ public class MainActivity extends Activity {
 				
 				/* converts the user input into a string.  This will need to check
 				* for whitespace and also if the user has not inputted anything */
+        /*
 				userInputString = searchInput.getText().toString();
 				
 				
@@ -111,19 +113,19 @@ public class MainActivity extends Activity {
 					public void handleMessage(Message message){
 						
 						/* what gets returned from the called service */
-						Object returnedObject = message.obj;
+		//				Object returnedObject = message.obj;
 						
 						/* casting the object to a string */
-						String returnedObjectString = returnedObject.toString();
+		//				String returnedObjectString = returnedObject.toString();
 						
-						if(message.arg1 == RESULT_OK && returnedObject != null){
+		/*				if(message.arg1 == RESULT_OK && returnedObject != null){
 							
 							/* calls on my FileManager class */
-					        m_file = FileManager.getInstance();
-					        m_file.writeStringFile(_context, fileName, returnedObjectString);
+		//			        m_file = FileManager.getInstance();
+		//			        m_file.writeStringFile(_context, fileName, returnedObjectString);
 
 					        
-					        displayData();
+		/*			        displayData();
 							
 						}
 
@@ -134,12 +136,12 @@ public class MainActivity extends Activity {
 				
 				
 		    	/* creation of my messenger to the service */
-		    	Messenger jsonMessenger = new Messenger(JsonHandler);
+		//    	Messenger jsonMessenger = new Messenger(JsonHandler);
 		
-		    	Intent myServiceIntent = new Intent(_context, JSONWeatherService.class);
+		//    	Intent myServiceIntent = new Intent(_context, JSONWeatherService.class);
 		
 		    	/* basically this passes info to my service */
-		    	myServiceIntent.putExtra("messenger", jsonMessenger);
+		/*    	myServiceIntent.putExtra("messenger", jsonMessenger);
 		    	myServiceIntent.putExtra("key", userInputString);
 		    	startService(myServiceIntent);
 			}
@@ -147,6 +149,7 @@ public class MainActivity extends Activity {
                 
         
         /* button for my query info section */
+        /*
         Button queryButton = (Button)findViewById(R.id.queryButton);
         queryButton.setOnClickListener(new OnClickListener() {
 			
@@ -154,14 +157,16 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 						
 			/* calling on my query info class */
+        /*
 			Intent intent = new Intent(_context, QueryInfo.class);
 			startActivity(intent);
 			
 			}
-		});
+		}); */
 
         /* button will gather different info within the json and pass it on 
          * to a new activity */ 
+        /*
         Button moreInfoButton = (Button)findViewById(R.id.moreInfo);
         moreInfoButton.setOnClickListener(new OnClickListener() {
 			
@@ -173,6 +178,7 @@ public class MainActivity extends Activity {
 					Log.i("result", JSONString);
 					
 					/* going to be gathering the name, country, and population */
+        /*
 					JSONObject mainInfo = null;
 					JSONObject city = null;
 					
@@ -188,6 +194,7 @@ public class MainActivity extends Activity {
 						//Log.i("info", cityName +" "+ country + " " + population);
 						
 						/* startup of my activity */
+        /*
 						Intent intent = new Intent(_context, MoreInfo.class);
 						intent.putExtra("name", cityName);
 						intent.putExtra("country", country);
@@ -207,6 +214,7 @@ public class MainActivity extends Activity {
 				
 			}
 		});
+		*/
     }
 
 /* my on save instance method */    
@@ -323,5 +331,68 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+
+	@Override
+	public void onDisplay() {
+		// TODO Auto-generated method stub
+		
+		/* converts the user input into a string.  This will need to check
+		* for whitespace and also if the user has not inputted anything */
+
+		userInputString = searchInput.getText().toString();
+		
+		
+		
+		final Handler JsonHandler = new Handler(){
+
+			@Override
+			public void handleMessage(Message message){
+				
+				/* what gets returned from the called service */
+				Object returnedObject = message.obj;
+				
+				/* casting the object to a string */
+				String returnedObjectString = returnedObject.toString();
+				
+				if(message.arg1 == RESULT_OK && returnedObject != null){
+					
+					/* calls on my FileManager class */
+			        m_file = FileManager.getInstance();
+			        m_file.writeStringFile(_context, fileName, returnedObjectString);
+
+			        
+			        displayData();
+					
+				}
+
+			}
+    		
+    	};
+		
+		
+		
+    	/* creation of my messenger to the service */
+    	Messenger jsonMessenger = new Messenger(JsonHandler);
+
+    	Intent myServiceIntent = new Intent(_context, JSONWeatherService.class);
+
+    	/* basically this passes info to my service */
+    	myServiceIntent.putExtra("messenger", jsonMessenger);
+    	myServiceIntent.putExtra("key", userInputString);
+    	startService(myServiceIntent);
+	}
+
+	@Override
+	public void onQueryInfo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onDisplayMoreInfo() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
