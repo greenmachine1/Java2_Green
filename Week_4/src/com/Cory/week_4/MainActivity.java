@@ -1,6 +1,8 @@
 package com.Cory.week_4;
 
 
+import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,11 +12,13 @@ import org.json.JSONObject;
 
 import com.Cory.lib.WebInfo;
 
+import android.R.array;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
 import android.app.Activity;
+import android.app.Fragment.SavedState;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -48,7 +52,8 @@ public class MainActivity extends Activity {
 	
 	private static final int REQUEST_CODE = 10;
 	
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -76,9 +81,16 @@ public class MainActivity extends Activity {
         searchInput = (EditText)findViewById(R.id.searchInput);
         searchInput.setHint("Enter a City to look up its current weather");
         
-        
-        
-        
+        if(savedInstanceState != null){
+	        mylist = (ArrayList<HashMap<String, String>>) savedInstanceState.getSerializable("saved");
+	        if(mylist != null){
+	        	SimpleAdapter adapter = new SimpleAdapter(this, mylist, R.layout.list_row, 
+						new String[]{"pressure", "weather", "speed"}, 
+						new int[]{R.id.pressure, R.id.weather, R.id.speed});
+				
+				listView.setAdapter(adapter);
+	        }
+        }
         
         
         Button goButton = (Button)findViewById(R.id.goButton);
@@ -112,16 +124,6 @@ public class MainActivity extends Activity {
 
 					        
 					        displayData();
-					        
-					        
-					        
-					        
-					        
-					        
-					        
-					        
-					        
-					        
 							
 						}
 						
@@ -210,12 +212,29 @@ public class MainActivity extends Activity {
     }
     
     /* my saved state for when the user changes orientation */
+    /*
+    @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
     	String tempInputString = searchInput.getText().toString();
     	
     	savedInstanceState.putString("UserInput", tempInputString);
     	
+    	if(mylist != null && !mylist.isEmpty()){
+    		
+    	}
+    	
     	super.onSaveInstanceState(savedInstanceState);
+    }
+    */
+    
+    @Override
+    protected void onSaveInstanceState(Bundle outState){
+    	super. onSaveInstanceState(outState);
+    	
+    	if(mylist != null && !mylist.isEmpty()){
+    		outState.putSerializable("saved", (Serializable) mylist);
+    		Log.i("MAIN", "Saving instance state data");
+    	}
     }
     
     /* saved data gets restored and displayed */
@@ -223,9 +242,12 @@ public class MainActivity extends Activity {
     	
     	super.onRestoreInstanceState(savedInstanceState);
     	
-    	searchInput.setText(savedInstanceState.getString("UserInput"));
+    	Log.i("MAIN", "Restoring instance state data");
+    	
+    	//searchInput.setText(savedInstanceState.getString("UserInput"));
     }
     
+   
     
     /* Upon completion of the second activity, do this */
     @Override
@@ -245,6 +267,7 @@ public class MainActivity extends Activity {
     /* this will parse out the saved file and present it back to the user */
     public void displayData(){
     	
+    	
     	/* loading my file into a string */
     	String JSONString = m_file.readStringFile(this, fileName);
     	Log.i("result", JSONString);
@@ -254,6 +277,7 @@ public class MainActivity extends Activity {
     	mylist = new ArrayList<HashMap<String,String>>();
 
     	
+ 
     	JSONObject job = null;
     	JSONObject city = null;
     	JSONArray results = null;
