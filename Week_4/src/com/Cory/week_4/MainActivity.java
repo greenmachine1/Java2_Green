@@ -42,6 +42,7 @@ public class MainActivity extends Activity {
 	
 	FileManager m_file;
 	String fileName = "json_info.txt";
+	String userInputString;
 	
 	private static final int REQUEST_CODE = 10;
 	
@@ -86,7 +87,9 @@ public class MainActivity extends Activity {
 				
 				/* converts the user input into a string.  This will need to check
 				* for whitespace and also if the user has not inputted anything */
-				String userInputString = searchInput.getText().toString();
+				userInputString = searchInput.getText().toString();
+				
+				
 				
 				final Handler JsonHandler = new Handler(){
 
@@ -141,14 +144,7 @@ public class MainActivity extends Activity {
 			
 			}
 		});
-        
-        
-        
-        
-        
-        
-        
-        
+
         /* button will gather different info within the json and pass it on 
          * to a new activity */ 
         Button moreInfoButton = (Button)findViewById(R.id.moreInfo);
@@ -200,9 +196,17 @@ public class MainActivity extends Activity {
     
     /* my saved state for when the user changes orientation */
     public void onSaveInstanceState(Bundle savedInstanceState){
-    	savedInstanceState.putString("UserInput", "Hello");
+    	savedInstanceState.putString("UserInput", userInputString);
     	
     	super.onSaveInstanceState(savedInstanceState);
+    }
+    
+    /* saved data gets restored and displayedCh */
+    public void onRestoreInstanceState(Bundle savedInstanceState){
+    	
+    	super.onRestoreInstanceState(savedInstanceState);
+    	
+    	searchInput.setText(savedInstanceState.getString("userInput"));
     }
     
     
