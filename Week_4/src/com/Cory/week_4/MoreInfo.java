@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 
-public class MoreInfo extends Activity{
+public class MoreInfo extends Activity implements MoreInfoFragment.MoreInfoListener{
 
 	TextView cityTextView;
 	TextView countryTextView;
