@@ -1,16 +1,11 @@
 package com.Cory.week_4;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Intent;
+
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.Messenger;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +35,7 @@ public class FormFragment extends Fragment {
 		LinearLayout view = (LinearLayout) inflater.inflate(R.layout.main, container, false);
 		
 		
-		Button goButton = (Button) getActivity().findViewById(R.id.goButton);
+		Button goButton = (Button) view.findViewById(R.id.goButton);
         goButton.setOnClickListener(new OnClickListener(){
 
 			@Override
@@ -52,7 +47,7 @@ public class FormFragment extends Fragment {
 
         
         /* button for my query info section */
-        Button queryButton = (Button)getActivity().findViewById(R.id.queryButton);
+        Button queryButton = (Button)view.findViewById(R.id.queryButton);
         queryButton.setOnClickListener(new OnClickListener() {
 		
         	@Override
@@ -62,7 +57,7 @@ public class FormFragment extends Fragment {
         	
 		});
         
-        Button moreInfoButton = (Button)getActivity().findViewById(R.id.moreInfo);
+        Button moreInfoButton = (Button)view.findViewById(R.id.moreInfo);
         moreInfoButton.setOnClickListener(new OnClickListener() {
 			
 			@Override

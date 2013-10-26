@@ -93,77 +93,7 @@ public class MainActivity extends Activity implements FormFragment.FormListener{
 	        }
         }
         
-        /*
-        Button goButton = (Button)findViewById(R.id.goButton);
-        goButton.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				
-				/* converts the user input into a string.  This will need to check
-				* for whitespace and also if the user has not inputted anything */
-        /*
-				userInputString = searchInput.getText().toString();
-				
-				
-				
-				final Handler JsonHandler = new Handler(){
-
-					@Override
-					public void handleMessage(Message message){
-						
-						/* what gets returned from the called service */
-		//				Object returnedObject = message.obj;
-						
-						/* casting the object to a string */
-		//				String returnedObjectString = returnedObject.toString();
-						
-		/*				if(message.arg1 == RESULT_OK && returnedObject != null){
-							
-							/* calls on my FileManager class */
-		//			        m_file = FileManager.getInstance();
-		//			        m_file.writeStringFile(_context, fileName, returnedObjectString);
-
-					        
-		/*			        displayData();
-							
-						}
-
-					}
-		    		
-		    	};
-				
-				
-				
-		    	/* creation of my messenger to the service */
-		//    	Messenger jsonMessenger = new Messenger(JsonHandler);
-		
-		//    	Intent myServiceIntent = new Intent(_context, JSONWeatherService.class);
-		
-		    	/* basically this passes info to my service */
-		/*    	myServiceIntent.putExtra("messenger", jsonMessenger);
-		    	myServiceIntent.putExtra("key", userInputString);
-		    	startService(myServiceIntent);
-			}
-        });
-                
-        
-        /* button for my query info section */
-        /*
-        Button queryButton = (Button)findViewById(R.id.queryButton);
-        queryButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-						
-			/* calling on my query info class */
-        /*
-			Intent intent = new Intent(_context, QueryInfo.class);
-			startActivity(intent);
-			
-			}
-		}); */
-
+   
         /* button will gather different info within the json and pass it on 
          * to a new activity */ 
         /*
@@ -386,12 +316,78 @@ public class MainActivity extends Activity implements FormFragment.FormListener{
 	@Override
 	public void onQueryInfo() {
 		// TODO Auto-generated method stub
+		/* button for my query info section */
+        
+        Button queryButton = (Button)findViewById(R.id.queryButton);
+        queryButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+						
+			/* calling on my query info class */
+        
+			Intent intent = new Intent(_context, QueryInfo.class);
+			startActivity(intent);
+			
+			}
+		}); 
 		
 	}
 
 	@Override
 	public void onDisplayMoreInfo() {
 		// TODO Auto-generated method stub
+		 /* button will gather different info within the json and pass it on 
+         * to a new activity */ 
+        
+        Button moreInfoButton = (Button)findViewById(R.id.moreInfo);
+        moreInfoButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(m_file != null){
+					String JSONString = m_file.readStringFile(_context, fileName);
+					Log.i("result", JSONString);
+					
+					/* going to be gathering the name, country, and population */
+        
+					JSONObject mainInfo = null;
+					JSONObject city = null;
+					
+					try{
+						mainInfo = new JSONObject(JSONString);
+						
+						city = mainInfo.getJSONObject("city");
+						
+						String cityName = city.getString("name");
+						String country = city.getString("country");
+						String population = city.getString("population");
+						
+						//Log.i("info", cityName +" "+ country + " " + population);
+						
+						/* startup of my activity */
+        
+						Intent intent = new Intent(_context, MoreInfo.class);
+						intent.putExtra("name", cityName);
+						intent.putExtra("country", country);
+						intent.putExtra("population", population);
+						setResult(RESULT_OK, intent);
+						startActivityForResult(intent, REQUEST_CODE) ;
+						
+					}catch (JSONException e){
+						e.printStackTrace();
+					}
+
+				}else{
+					Log.i("nothings in this file", "Nope");
+				}
+				
+				
+				
+			}
+		});
+		
 		
 	}
     
