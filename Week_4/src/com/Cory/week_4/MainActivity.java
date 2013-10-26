@@ -201,12 +201,12 @@ public class MainActivity extends Activity {
     	super.onSaveInstanceState(savedInstanceState);
     }
     
-    /* saved data gets restored and displayedCh */
+    /* saved data gets restored and displayed */
     public void onRestoreInstanceState(Bundle savedInstanceState){
     	
     	super.onRestoreInstanceState(savedInstanceState);
     	
-    	searchInput.setText(savedInstanceState.getString("userInput"));
+    	searchInput.setText(savedInstanceState.getString("UserInput"));
     }
     
     
